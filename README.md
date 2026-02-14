@@ -98,7 +98,7 @@ bc1qvu9vu6s9snfs5n7cytf2hqhkasg9qamwcyumpq
 
 # Developer
 
-teri-farty — tf_game
+teri-farti — tf_game
 
 Website: https://teri-farti.github.io/tf_game_page/
 
