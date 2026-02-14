@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/walking-to-kick-stone-rocks.mp3-5a7b649bf9829e318015ace4bd8501ef.mp3str"
+
+[deps]
+
+source_file="res://walking-to-kick-stone-rocks.mp3"
+dest_files=[ "res://.import/walking-to-kick-stone-rocks.mp3-5a7b649bf9829e318015ace4bd8501ef.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lmeruqgfxdsi.mp3-1fc5b7b910bd2b1205e9923abaa6da95.mp3str"
+
+[deps]
+
+source_file="res://lmeruqgfxdsi.mp3"
+dest_files=[ "res://.import/lmeruqgfxdsi.mp3-1fc5b7b910bd2b1205e9923abaa6da95.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

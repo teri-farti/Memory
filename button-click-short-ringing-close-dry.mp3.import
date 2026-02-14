@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/button-click-short-ringing-close-dry.mp3-219aca7ff68a5f268ffe3aaebb859be5.mp3str"
+
+[deps]
+
+source_file="res://button-click-short-ringing-close-dry.mp3"
+dest_files=[ "res://.import/button-click-short-ringing-close-dry.mp3-219aca7ff68a5f268ffe3aaebb859be5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
