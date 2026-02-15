@@ -13,6 +13,7 @@ var time = 0.0
 var original_y_positions = []
 
 func _ready():
+	mouse_filter = MOUSE_FILTER_IGNORE 
 	for btn in buttons:
 		original_y_positions.append(btn.rect_position.y)
 

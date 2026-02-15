@@ -22,7 +22,10 @@ var clicks = 0
 var is_processing = false
 
 func _ready():
+	randomize() # ИСПРАВЛЯЕТ БАГ 2: теперь карты всегда будут разными
 	VisualServer.set_default_clear_color(Color("#1a1a1a"))
+	
+	_load_settings() # Загружаем громкость при старте
 	
 	var font_res = load("res://Samson.ttf")
 	if font_res:
@@ -32,17 +35,51 @@ func _ready():
 	if rect1: rect1.show()
 	if rect2: rect2.hide()
 	if rectgame: rectgame.hide()
+	
 	if start_btn: start_btn.connect("pressed", self, "_on_start_button")
 	
+	# ИСПРАВЛЯЕТ БАГ 1: подключаем все уровни
+	# Проверь пути к кнопкам в дереве сцены!
+	$ColorRect2/Control/Button2.connect("pressed", self, "_on_level_1_button")
+	$ColorRect2/Control/Button3.connect("pressed", self, "_on_level_2_button")
+	$ColorRect2/Control/Button4.connect("pressed", self, "_on_level_3_button")
+	$ColorRect2/Control/Button5.connect("pressed", self, "_on_level_4_button")
 
 	var sfx_slider = $ColorRect2/SfxSlider
 	var music_slider = $ColorRect2/MusicSlider
 	
 	sfx_slider.connect("value_changed", self, "_on_sfx_volume_changed")
 	music_slider.connect("value_changed", self, "_on_music_volume_changed")
+	
+	# Обновляем положение ползунков под загруженные данные
+	sfx_slider.value = db2linear(btn_sound.volume_db) * 100
+	music_slider.value = db2linear(MusicSound.volume_db) * 100
 
-	for btn in [$ColorRect2/Control/Button5, $ColorRect2/Control/Button2, $ColorRect2/Control/Button3, $ColorRect2/Control/Button4]:
-		btn.connect("pressed", self, "_play_btn_sound")
+# --- ИСПРАВЛЕНИЕ БАГА 3: СОХРАНЕНИЕ ---
+
+func _on_sfx_volume_changed(value):
+	btn_sound.volume_db = linear2db(value / 100)
+	card_sound.volume_db = linear2db(value / 100)
+	_save_settings()
+
+func _on_music_volume_changed(value):
+	MusicSound.volume_db = linear2db(value / 100)
+	_save_settings()
+
+func _save_settings():
+	var config = ConfigFile.new()
+	config.set_value("audio", "sfx", btn_sound.volume_db)
+	config.set_value("audio", "music", MusicSound.volume_db)
+	config.save("user://settings.cfg")
+
+func _load_settings():
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err == OK:
+		btn_sound.volume_db = config.get_value("audio", "sfx", 0)
+		card_sound.volume_db = btn_sound.volume_db
+		MusicSound.volume_db = config.get_value("audio", "music", 0)
+
 
 # --- ЗВУКОВЫЕ ФУНКЦИИ ---
 
@@ -51,14 +88,6 @@ func _play_btn_sound():
 
 func _play_card_sound():
 	card_sound.play()
-
-func _on_sfx_volume_changed(value):
-	btn_sound.volume_db = linear2db(value / 100)
-	card_sound.volume_db = linear2db(value / 100)
-
-func _on_music_volume_changed(value):
-	MusicSound.volume_db = linear2db(value / 100)
-	pass
 
 
 func _on_start_button():
