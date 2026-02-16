@@ -1,5 +1,13 @@
 # Memory
 
+![Uploading Screenshot (24).png…]()
+
+![Uploading Screenshot (25).png…]()
+
+![Uploading Screenshot (26).png…]()
+
+
+
 This project is a small, atmospheric symbol-matching game, created in a single day using the Godot 3 engine. The focus is on simplicity, a relaxed pace, and a cozy visual atmosphere, rather than mechanical complexity.
 
 ---
